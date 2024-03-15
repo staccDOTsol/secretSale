@@ -1,14 +1,31 @@
-import { WalletAdapterNetwork, WalletError } from '@solana/wallet-adapter-base';
-import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
 import {
-    UnsafeBurnerWalletAdapter
-} from '@solana/wallet-adapter-wallets';
-import { Cluster, clusterApiUrl } from '@solana/web3.js';
-import { FC, ReactNode, useCallback, useMemo } from 'react';
-import { AutoConnectProvider, useAutoConnect } from './AutoConnectProvider';
-import { notify } from "../utils/notifications";
-import { NetworkConfigurationProvider, useNetworkConfiguration } from './NetworkConfigurationProvider';
-import dynamic from "next/dynamic";
+  FC,
+  ReactNode,
+  useCallback,
+  useMemo,
+} from 'react';
+
+import dynamic from 'next/dynamic';
+
+import {
+  WalletAdapterNetwork,
+  WalletError,
+} from '@solana/wallet-adapter-base';
+import {
+  ConnectionProvider,
+  WalletProvider,
+} from '@solana/wallet-adapter-react';
+import { UnsafeBurnerWalletAdapter } from '@solana/wallet-adapter-wallets';
+
+import { notify } from '../utils/notifications';
+import {
+  AutoConnectProvider,
+  useAutoConnect,
+} from './AutoConnectProvider';
+import {
+  NetworkConfigurationProvider,
+  useNetworkConfiguration,
+} from './NetworkConfigurationProvider';
 
 const ReactUIWalletModalProviderDynamic = dynamic(
   async () =>
@@ -20,7 +37,7 @@ const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const { autoConnect } = useAutoConnect();
     const { networkConfiguration } = useNetworkConfiguration();
     const network = networkConfiguration as WalletAdapterNetwork;
-    const endpoint = useMemo(() => clusterApiUrl(network), [network]);
+    const endpoint = "https://jarrett-solana-7ba9.mainnet.rpcpool.com/8d890735-edf2-4a75-af84-92f7c9e31718"
 
     console.log(network);
 
